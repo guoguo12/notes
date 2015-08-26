@@ -25,6 +25,7 @@ Important things about algorithms
     Let T(n) = # of operations to find Fib(n)
     Recurrence relation: T(n) = T(n-1) + T(n-2) + C
       so T(n) is O(2^n)
+      Doesn't account for cost of addition
 
 Finding exact number of operations is hard
   Requires details about machine
@@ -32,5 +33,9 @@ More important to know how it scales (asymptotic analysis)
 
 Use big-O notation to simplify runtime approximations
 
-
+Better way to compute Fibonacci numbers?
+  Loop from 2 to n
+  Use array to memoize results
+  Takes O(n^2) operations
+    b/c addition is linear in size of args
 
