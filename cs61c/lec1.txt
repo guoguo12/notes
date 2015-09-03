@@ -1,0 +1,37 @@
+ ________________
+< 1 - Intro to C >
+ ----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Why C?
+  Exploit hardware features
+  Become better programmer
+
+Compiling C code
+  Map C programs into machine code
+  Typically two-part process
+    .c files to .o files
+    Linking .o files into executables
+
+Advantages of compilation
+  Faster runtime execution
+  Only changed files need to be recompiled
+
+Disadvantages of compilation
+  Compiled files are OS- and processor-specific
+  Development may be slower due to build time
+
+C pre-processor (CPP)
+  Processes C code before compilation
+  Removes comments
+  Runs pre-processor commands
+    #include for imports 
+    #define for macro definition
+
+Integers in C
+  Size depends on computer (16, 32, or 64)
+  
