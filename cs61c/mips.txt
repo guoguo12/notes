@@ -1,0 +1,185 @@
+ ______
+< MIPS >
+ ------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+MIPS architecture
+  RISC instruction set architecture
+  Widely used in embedded apps
+
+Registers
+  Used instead of variables in assembly
+  Fixed locations in hardware
+  Limited operations but fast
+  No notion of type
+    Operations determine how values are treated
+
+MIPS has 32 registers
+  Each 32 bits (1 word) wide
+  Named $0, $1, etc. or by special names 
+    $s0-$s7 for C variables
+    $t0-$t7 for temp variables
+
+Addition/subtraction in MIPS:
+
+  add $s0, $s1, $s2  # a = b + c
+  sub $s3, $s4, $s5  # d = e - f
+
+Breaking up a C statement:
+
+  # a = b + c + d - e
+  add $t0, $s1, $s2  # temp = b + c
+  add $t0, $t0, $s3  # temp = temp + d
+  sub $s0, $t0, $s4  $ a = temp - e
+
+Numerical constant (immediate):
+
+  addi $s0, $s1, -10  # a = b - 10
+
+$zero is a register with value zero:
+
+  add $s0, $s1, $zero  # a = b
+
+MIPS memory addressing
+  Addresses are in bytes
+  Big-endian convention
+    Address of word is same as address of leftmost byte
+
+Transferring from memory to register:
+
+  lw $t0, 12($s3)  # temp = A[3]
+
+lw means "load word"
+$s3 is base register (pointer), 12 is offset in bytes (3 words)
+Note that the offset must be hard-coded
+
+Transferring from register to memory:
+
+  # A[10] = 1 + A[3]
+  lw $t0, l2($s3)   # temp = A[3]
+  addi $t0, $s0, 1  # temp = temp + 1
+  sw $t0, 40($s3)   # A[10] = temp
+
+lb/sb can be used to load/store bytes instead of words
+
+Branching instructions
+  beq ("branch if equal")
+  bne ("branch if not equal")
+  j (unconditional jump)
+
+Condition checking
+  slt ("set to 1 if less than else 0")
+  slti (compare with immediate)
+  Often used with beq and $zero
+
+MIPS instructions
+  32 bits long each
+  Converted into bit patterns to be held in memory
+  
+Executing programs
+  Program counter (PC) holds byte address of next instruction
+  Instruction loaded into processor then executed
+  PC incremented (default is by four bytes)
+
+Calling a function
+  Use $a0-a3 to store arguments
+  $ra holds the return argument
+    Holds address of instruction to return to
+    Use jr $ra to jump to return address
+  Use jal to invoke function 
+    Stores address of following instruction to $ra
+  Old values before function call stored on stack
+    $sp is stack pointer
+      Decrement to push, increment to pop
+      Modified using addi inside function
+      Use sw and lw with $sp to save/get old values
+    Function must preserve "saved registers" $s0-$s7
+      Also $ra and other special registers
+    Function may alter $ti and $ai registers
+
+Early computers (1940s) were programmed by manipulating wires
+  Took days to program and seconds to execute
+
+Big idea: store programs as data
+Consequences
+  Addressing developed to track where program is stored
+  Instruction sets are backwards compatible
+  Instructions are numbers
+    One word each in MIPS
+
+MIPS instruction formats
+  I-format used for operations with immediates (e.g. labels and offsets)
+    lw, sw, beq, bne, etc.
+  J-format used for j and jal
+  R-format used for other instructions
+
+R-format instructions
+  32 bits divided into 5- or 6-bit fields
+    opcode (6 bits) always 0 for R-format instructions
+    rs and rt (5 bits each) specify register args
+    rd (5 bits) specifies the destination (result) register
+    shamt (5 bits) specifies the shift amount
+      Always 0 in non-shift instructions
+    funct (6 bits) specifies the instruction exactly
+
+I-format instructions
+  opcode specifies instruction
+  rs and rt specify register args
+  Remaining 16 bits used to store immediate value
+    For branching, immediate stores instructions (words) forward or backwards
+
+J-format instructions
+  opcode specifies instruction
+  Remaining 26 bits used to store jump target address (in words)
+    Can reach 2^28 out of 2^32 addresses
+    Top 4 bits given by top 4 bits of PC
+
+Pseudo-instructions make coding easier
+  Translated into actual instructions later
+  move dst,src becomes addi dst,src,0
+  Assembler uses assembly register ($1) if translation requires other register
+
+addiu is pseudo-instruction for adding large intermediate
+  Translated into sequence of lui, ori, and addu instructions
+mul is pseudo-instruction for multiplication
+
+True Assembly Language (TAL)
+  Actual instructions understood by computer
+MIPS Assembly Language (MAL)
+  Compiled by assembler
+  Contains pseudo-instructions
+
+MIPS multiplication
+  Finds product of two 32-bit registers
+  Requires two registers to hold 64-bit product
+    mfhi and mflo
+
+MIPS division
+  Yields quotient and product (each in own register)
+
+Compiling a C program (foo.c)
+  Compiler makes assembly program, foo.s
+    Outputs MAL code (MIPS with pseudo-instructions)
+  Assembler makes object file, foo.o
+    Reads and uses assembler directives
+      .text indicates code
+      .data indicates user data
+      .globl indicates global name/function
+      .asciiz denotes null-terminated string to store in memory
+      .word denotes 32-bit quantities of static data
+    Replaces pseudo-instructions with real instructions
+  Linker makes executable, a.out
+    Resolves references using symbol tables and library files 
+Loader can then read a.out into memory to execute
+
+Symbol table
+  List of items in given file that can be used by other files
+Relocation table
+  List of items in given files whose addresses are needed
+    Label locations (used by j and jal)
+    Static data (used by la)
+    

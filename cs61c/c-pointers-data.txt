@@ -1,0 +1,102 @@
+ _____________________
+< C Pointers and Data >
+ ---------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Pointers
+  & gets the memory address of a variable
+  * dereferences a pointer
+    Also used for delcaring pointers
+
+C is pass-by-value
+  Pointers are used for parameter passing
+
+Pointers typically point to one type of thing
+  Generic pointers (void *ptr) can point to anything
+
+Pointer dangers
+  Local variables are not auto-initialized
+    May contain anything after declaration
+  Pointer declaration does not allocate the target
+
+Arrow notation: p->x equivalent to (*p).x
+
+Concise string length function:
+
+  int strlen(char *s)
+  {
+    char *p = s;
+    while (*p++) ;
+    return (p - s - 1);
+  }
+
+*p++ returns *p then increments p
+
+Array equivalent to pointer to first element:
+
+  pt = myArray;
+  pt = &myArray[0]; // Same thing
+
+Concise array summation:
+  
+  int sum = 0;
+  int p = &ar[0];
+  int q = &ar[LENGTH];
+  while (p != q) sum += *p++;
+
+Address after last element in array must be valid
+
+Only valid pointer arithmetic operations:
+  Add an integer to a pointer
+  Subtract two pointers (e.g. in array)
+  Copmare pointers
+  Compare pointer to NULL
+
+Get program args:
+
+  int main(int argc, char *argv[])
+
+argc is number of args (including program name)
+argv is array of strings (pointers to characters)
+
+Address space of program
+  Stack holds local variables in functions
+    Grows downward (toward zero)
+    New frame allocated for every function call with:
+      Return address
+      Function args
+      Space for local variables
+    Stack pointer indicates top of stack
+  Heap holds dynamic data requested using malloc()
+    Grows upward (away from zero)
+  Static storage holds variables outside of functions
+  Code segment holds executable statements 
+
+malloc() allocates heap space and returns a void pointer to block:
+  
+  typedef struct { ... } TreeNode;
+  TreeNode *tp = (TreeNode *) malloc(sizeof(TreeNode));
+
+sizeof(TreeNode) returns size of TreeNode type in bytes
+(TreeNode *) casts void pointer to correct type
+
+free() deallocates memory:
+
+  int *ip;
+  ip = (int *) malloc(sizeof(int));
+  ...
+  free((void *) ip);
+
+free() must receive the exact pointer returned by malloc 
+
+Must check that malloc() doesn't return NULL (indicates memory is full):
+
+  if ((ip = (int *) malloc(sizeof(int))) == NULL) {
+    printf("Memory is full");
+    exit(1);
+  }
+

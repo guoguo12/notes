@@ -1,0 +1,40 @@
+ ___________
+< SDS Intro >
+ -----------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Clock signal (CLK)
+  Repeating square wave
+
+Synchronous digital systems (SDSs)
+  Signal changes follow clock changes
+
+Circuits in SDSs 
+  CL (combinatorial logic) circuits
+    No history (e.g. ALUs)
+  SL (sequential logic) circuits 
+    Remember data (e.g. registers)
+    AKA state elements
+
+Register internals: d-type flip-flop
+  Samples input (d) at rising edge of clock
+  Input is transferred to output (q)
+Timing terms
+  Setup time = period where input must be stable before CLK edge
+  Hold time = period where input must be stable after CLK edge
+  CLK-to-q delay = time for output to change after CLK edge
+
+Synchronous systems model
+  Collection of CL blocks separated by registers
+  Clock signals connect to clock inputs of registers
+Maximum circuit frequency
+  Find max delay by adding CL delays, CLK-to-q delays, and setup times
+Pipelining to improve performance
+  Insert register after CL block to overlap instructions
+  More outputs per second (bandwidth)
+  Each individual result takes longer (greater latency)
+

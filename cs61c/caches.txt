@@ -1,0 +1,74 @@
+ ________
+< Caches >
+ --------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Typical memory hierarchy
+  Register file
+  Data and instruction caches
+  Secondary-level cache (SRAM)
+  Third-level cache (SRAM)
+  Main memory (DRAM)
+  Secondary memory (disk)
+Memory closest to processor is fastest
+
+Temporal locality
+  Memory access -> that location will likely be accessed again
+Spatial locality
+  Memory access -> nearby locations will likely be accessed
+
+Cache is divided into 1+ sets
+  Like different walled-off bookshelf sections
+Each set holds blocks
+  Like an individual book
+Each block contains some number of bytes
+  Like pages in a book
+
+Processor address fields
+  Index
+    Selects the set
+    Size is log(number of sets)
+  Tag
+    Selects block within set
+    Size is address size - size of index - size of block offset
+  Block offset
+    Selects the byte address within block
+    Size is log(number of bytes per block)
+
+Fully associative cache
+  Block can go anywhere (most freedom)
+  Only one set containing all blocks
+N-way set asssociative cache
+  N sets, as chosen by index field
+Direct mapped cache
+  Block goes in one place (least freedom)
+  One set per block, one block per set
+
+Cache access
+  Cache hit (copy of data found)
+    Send to processor
+  Cache miss (copy of data not found)
+    Read from main memory
+    Replace in cache
+    Send to processor
+Valid bit
+  Indicates whether tag entry is valid for this program
+    0 -> cache miss (even if address = tag by chance)
+    1 -> cache hit
+
+Write-through policy
+  Every cache write eventually gets to main memory
+  Buffered so write-through can happen in parallel to processing
+Write-back policy
+  Write cache block back to memory when block is evicted
+    Dirty bit is set when processor modifies cache block
+  Reduces write traffic
+
+Average memory access time (AMAT)
+  Considers cache hits and misses
+  Equal to (time for hit) + (miss rate) * (miss penalty)
+
