@@ -28,13 +28,13 @@ Each set holds blocks
 Each block contains some number of bytes
   Like pages in a book
 
-Processor address fields
-  Index
-    Selects the set
-    Size is log(number of sets)
+Processor address fields (high to low)
   Tag
     Selects block within set
     Size is address size - size of index - size of block offset
+  Index
+    Selects the set
+    Size is log(number of sets)
   Block offset
     Selects the byte address within block
     Size is log(number of bytes per block)
@@ -43,10 +43,11 @@ Fully associative cache
   Block can go anywhere (most freedom)
   Only one set containing all blocks
 N-way set asssociative cache
-  N sets, as chosen by index field
+  N places for a block
+  Number of sets = number of blocks / N
 Direct mapped cache
   Block goes in one place (least freedom)
-  One set per block, one block per set
+  Each set has exactly one block
 
 Cache access
   Cache hit (copy of data found)
@@ -71,4 +72,9 @@ Write-back policy
 Average memory access time (AMAT)
   Considers cache hits and misses
   Equal to (time for hit) + (miss rate) * (miss penalty)
+
+Total cache capacity
+  Equal to (associativity) * (number of sets) * (block size)
+    Associativity = blocks per set (AKA "number of ways")
+    Block size = bytes per block
 

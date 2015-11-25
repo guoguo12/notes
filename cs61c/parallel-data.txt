@@ -1,0 +1,40 @@
+ _______________
+< Parallel Data >
+ ---------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Multiprocessing
+  Run independent programs in parallel
+Parallel computing
+  Run single program faster
+
+Amdahl's Law
+  Implies that linear speedup requires fully parallelizable code
+    Law of deminishing returns for adding new processors
+  Max speedup = 1 / ((1 - F) + (F / S))
+    where F is fraction of program that can be parallelized
+      and S is speedup multiplier
+  Example: enhancement runs 20x faster but only usable 25% of the time
+    Max speedup = 1 / ((1 - 0.25) + (.25 / 20)) = 1.31 
+
+Types of scaling (on parallel processor)
+  Strong = speedup achieved w/o increasing problem size
+  Weak = speedup achieved by increasing problem size w/ processor count
+Load balancing also important
+
+SIMD
+  Single instruction stream, multiple data streams
+  Example of data-level parallelism, not concurrency
+
+Loop unrolling
+  Doing k sequential iterations of a loop in each step
+  Takes advantage of SIMD architecture
+
+
+
+  
+
