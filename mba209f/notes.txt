@@ -1,0 +1,700 @@
+# Lecture 1
+
+Basic business activities
+  Financing = raising money (via equity or debt) to finance investing/operating
+  Investing = purchasing assets for production of goods / delivery of services
+  Operating = producing goods/services to generate a profit
+    Can be manufacturer, merchandiser, or service
+
+Accounting
+  Identify economic events, record/classify/summarize them, prepare reports
+
+Who uses reports?
+  External
+    Investors, to decide whether to buy/sell stock
+    Creditors, to decide whether to lend money
+    Suppliers/customers, to decide whether to sell/buy goods
+  Internal
+    Managers, to decide how to maximize profits
+
+Four financial statements
+  Statement of cash flows
+  Balance sheet
+  Income statement
+  Statement of stockholders' equity
+Provided by companies annually to the SEC via Form 10-K
+
+Income statement
+  Step-by-step breakdown of revenue and expenses (including interest and taxes)
+
+Generally Accepted Accounting Principles (GAAP)
+  Rules for reporting financial information for publicly-traded companies
+  E.g., revenue is recognized when earned, not when the cash is collected
+Financial Accounting Standards Board (FASB)
+  Private sector group
+  Responsible for the GAAP, mostly (in conjunction with the SEC)
+International Financial Reporting Standards (IFRS)
+  Possibly replacement for the GAAP
+
+Role of management
+  Management is responsible for preparing financial information for the 10-K
+  Sarbanes-Oxley Act: CEOs/CFOs must certify the accuracy of their 10-Ks
+Enron scandal
+  Used "creative" accounting practices to inflate their assets and net income
+
+Independent auditors
+  SEC requires audits by independent accountants, who ensure GAAP compliance
+  Auditors grade the "fairness" (correctness) of the financial statements
+
+# Lecture 2
+
+How do companies handle sales returns?
+  It depends, but they must disclose their policies in the footnotes
+    E.g., Nordstrom's estimates returns using historical data
+  This is a possible opportunity for embellishment
+
+Balance sheet = statement of assets, liabilities, and stockholders' equity
+  Assets: cash, accounts receivable, inventory, buildings, land, ...
+    Accounts receivable = money owed by customers from prior sales
+  Liabilities: accounts/notes payable, accrued expenses, long-term debt, ...
+    Accounts payable = money owed to suppliers/creditors
+    Notes payable = money owed via promissory notes, e.g., to banks
+  Stockholders' equity:
+    Contributed capital = amount invested by stockholders
+    Retained capital = past earnings not distributed (as dividends)
+    Treasury stock (negative) = stock repurchased using Treasury notes
+Accounting equation: assets = liabilities + stockholders' equity
+Income statement covers a time period, balance sheet covers a specific moment
+
+Mixed-attribute measurement
+  Most assets are valued at their historical costs (what was paid)
+  But this doesn't make sense for certain assets, like buildings
+    E.g., the Transamerica Pyramid cost $32M in 1972, but is now worth far more
+  So under GAAP, different measurement methods are used for different assets
+
+Accrual accounting
+  Revenues are recognized when earned, expenses are recognized when incurred
+Cash basis accounting
+  Revenue/expenses are recognized when cash changes hands
+  Mostly used by small businesses and for personal finances
+
+How are gift card purchases recognized?
+  Initially: cash account is debited and deferred revenue is credited
+  When redeemed: debit deferred revenue, credit sales revenue
+
+# Lecture 3
+
+Guidance = estimates of future performance provided by a company
+  Not required, but common practice
+
+Depreciation = spreading out a tangible asset's cost over its lifetime
+  Amortization = the same concept, but for intangible assets (e.g., trademarks)
+
+Statement of cash flows
+  Shows how various activities changed cash throughout the year
+    Types of activities: operating, investing, financing
+  Useful in determining a company's short-term viability
+
+Factors in investment decisions
+  Financial information: 10-K
+  Company strategy: product differentiation or low cost?
+  Other: general economic conditions, political climate, industry outlook
+
+Tools of financial analysis
+  Horizontal analysis = look at trends across time
+    E.g., are revenue and EPS going up?
+  Vertical analysis = look at account makeups as proportions
+    E.g., each income statement item is given as a percentage of gross sales
+    Allows for easy comparison to related companies and across time
+  Ratio analysis = look at key ratios
+
+Examples of ratios in ratio analysis
+  Profitability ratios
+    Return on assets = net income / average total assets
+      Measures how effectively assets are being used to generate profits
+    Return on equity = net income / average stockholders' equity
+    Return on sales (profit margin) = net income / net sales revenue
+      Shows how much of every $1 in sales flows through to net income
+  Liquidity ratios
+    Current ratio = current assets / current liabilities
+
+# Lecture 4
+
+Capital budgeting = analysis of investing in capital assets
+  Many possible decisions: equipment selection, lease/buy, plant expansion, ...
+
+Budgeting methods
+  Payback method: how long will it take to get my money back?
+  NPV method: if the NPV is positive/zero, the project is acceptable
+    Based on cash flows (including timings), unlike accrual accounting
+  IRR method: if the IRR is above a preset threshold, the project is acceptable
+    When comparing two projects with the same cost, higher IRR is better
+
+# Lecture 5
+
+[No notes]
+
+# Lecture 6
+
+[Notes in Keep]
+
+# Lecture 7
+
+[No notes]
+
+# Lecture 8
+
+Four employee responses to dissatisfaction
+  Constructive active: voice (talk to supervisor)
+  Destructive active: exit
+  Constructive passive: loyalty (waiting for conditions to improve)
+  Destructive passive: neglect/theft
+
+How to avoid low job satisfaction
+  Pay attention to signs of dissatisfaction (e.g., absenteeism)
+  Measure job attitudes regularly
+  Evaluate fit between what employees are doing and what they want to do
+
+Theories of motivation
+  Maslow's hierarchy of needs
+    Physiological, safety, love/belonging, esteem, self-actualization
+  McClelland's theory of needs
+    Achievement, power, affiliation
+
+How to provide motivation
+  Job rotation = periodic shifting between tasks
+  Relational job design = connect employees with beneficiaries of their work
+  Employee involvement = use employee input to increase their commitment level
+    Examples: participative management and representative participation
+    Story: taking worker input at a Kingsford Charcoal plant upped productivity
+  Alternate work arrangements
+    Examples: telecommuting and flexible work schedules
+
+Should a leader admit to their subordinates when they don't know what to do?
+  Perhaps confident leadership inspires confident action?
+    This is certainly necessary in extreme or life-or-death situations
+  Or is honest, transparent leadership refreshing?
+
+# Lecture 9
+
+[Notes in Keep]
+
+# Lecture 10
+
+Elements of organizational culture
+  Innovation and risk-taking
+  Attention to detail
+  Outcome orientation
+  People orientation
+  Team orientation
+  Aggressiveness
+  Stability
+
+Story: Coca-Cola had friendly culture, Pepsi did not
+  Pepsi said its mission was to kill Coca-Cola
+
+Example: Zappos has really strong culture
+  All employees must take phone calls and do warehouse work during training
+  Trainees are offerred money if they choose to leave during training
+  Employees contribute to an annual "culture book", sharing their experiences
+  The CEO works in a regular cubicle and lives in a trailer
+Amazon bought Zappos but runs it as a separate entity
+In 2016, Zappos decided to flatten the company more and reduce management
+  Employees felt lost and wanted more feedback
+
+Most organizaions have numerous subcultures
+  E.g., faculty at Cal in different departments
+
+Culture differs from formalization
+  E.g., the strict rules of the military is formalization, not culture
+
+What does culture do?
+  Conveys a sense of identity
+  Facilitates the generation of commitment
+  Enhances social stability
+  Serves as a sense-making and control mechanism
+
+Culture creates climate (shared views about the organization and environment)
+  Climate influences behavior and habits
+
+Negative effects of culture
+  Used for discrimination, e.g., in SV tech companies
+  Used to justify harmful activities, e.g., hazing in frats
+
+Example: General Mills sought a target culture, so they profiled their execs
+  Not a great sample
+
+Cultures are an asset, especially to millennials
+
+# Lecture 11
+
+Comparison of airport trains
+  Shanghai maglev train
+    Fast (270 mph) but inconvenient
+    Only tourists use it
+  Hong Kong Airport Express
+    Slow but convenient
+The Shanghai maglev's speed is a product feature but does not provide value
+
+Value proposition is the heart of marketing
+Components of delivered value:
+  Customer value:
+    Product value
+    Image value (self-expression benefits)
+      Can signal status, wealth, affiliation, concern for the environment, ...
+      Consider driving a Land Rover vs. a Ford Pinto
+  Customer costs:
+    Monetary cost
+    Time cost
+      Consider shopping online vs. locally
+    Energy cost (how difficult is the decision)
+      Consider all-inclusive travel packages
+
+Not all product features provide value
+  AT&T had (failed) ads showing customers checking their emails at the beach
+
+Value propositions customers might care about:
+  Fashion
+  Design, e.g., Apple laptops
+  Efficacy (it works), e.g., Fedex overnight shipping
+  Durability
+  Convenience
+  Guarantee
+  Enhanced offering (complete solution), e.g., BMWs come with maintenance
+
+Microsoft Cloud Barcelona ad
+  No value proposition
+  Not clear what Microsoft does
+
+Steps to marketing strategy: define, segment, design, position
+
+Define the market
+  Opportunities come from unmet or poorly met needs
+    E.g., taxis in SF were bad, so Uber and Lyft thrived
+  The market = people/firms who need our product and can pay for it
+  Defining the market broadly can lead to new ideas
+    Do people want taxis per se or just to get between places?
+
+Segment the market and choose attractive segments
+  Target marketing works better than mass/undifferentiated marketing
+  Firms that target well avoid head-to-head competition
+Possible segment dimensions
+  Geographic
+  Demographics
+  Psychological
+  Product use, e.g., hobbyists vs. professionals
+Most segments are multi-dimensional
+Many firms have many offerings target to different segments, e.g., Marriott
+
+Design a marketing mix and appeal to the target
+  Four P's:
+    Product, including modifications target customers need
+    Price, including finance options
+    Place (channel of distribution)
+    Promotion
+Trend analysis can reveal future opportunities
+  The creation of the TSA created a market for travel-size personal items
+  Inflation in India means more people want to buy gold
+  Air pollution in Beijing is an opportunity for air purifier manufacturers
+  More multiple births in the US means twin strollers are in demand
+
+Position the offering (in the minds of customers, as compared to competitors)
+  Examples: "classic", "family friendly", "suitable for every day", "American"
+Positioning is difficult
+  Often, positioning must happen before product development even begins
+  The achieved position may not be the one intended
+  Most products can be positioned in several different ways
+    Example: Polaroid ads ("easy to use" vs. "discreet")
+  The desired position may have been pre-empted by a competitor
+    You can't position your city as "the most romantic place on Earth"
+  The competitive position may depend on geography
+    Honda is youthful in Japan but family-friendly in the US
+  Positioning has to be credible
+    Dunkin' Donuts can't market itself as "healthy" (but "comfort food" works)
+  Positioning can nudge, but it can't make magic leaps
+    Wal-Mart bought a Vogue ad to position itself as "fashionable"
+
+Why are big companies make rediculous marketing errors?
+  Lack of testing, critical thinking, and assertive management
+  The ad agency gives a "you're going to love this" pitch
+  Correct response:
+    "Don't explain it to me, because the ad won't have you explaining it"
+    "Did you test it?"
+Examples of bad ads
+  Coca-Cola Mexico ad
+    Depicts White youths in a poor Mexican town building a Christmas tree
+  Pepsi ad
+
+What challenges are specific to B2B marketing?
+  Businesses have fixed budgets
+    Possible solution: give them freebies
+  Mass-media advertising isn't particularly useful
+    Example: billboards featuring highly technical products
+
+# Lecture 12
+
+Products include pure goods, pure services, and everything in between
+  Services are tough
+    Can't be made in advance
+    Can't be stored and shipped
+    Most innovations can be instantly cloned
+
+Firms provide three levels of product
+  Core benefit
+    Non-tangible value provided
+  Actual product
+    Brand name, features, design, packaging, quality level
+  Augmented product
+    Installation, warranty, customer service
+
+Two bankruptcies and one positive example
+  Kodak
+    Failed to respond to rise of digital cameras
+    Actual product (film cameras) was excellent, but core benefit was outdated
+  Saturn (GM subsidiary)
+    Focused on making customer experience pleasant, but actual product was bad
+  Netflix
+    Understood that the core benefit was "watching movies at home"
+    Embraced streaming after investing hundreds of millions on mailing services
+
+New product development (NPD)
+  Idea generation
+    Most firms have too many good ideas
+    New products come from pain points
+      Example: the Dyson Airblade was a response to the conventional hand dryer
+  Idea screening
+    Products must be feasible and match manufacturing/distribution expertise
+  Concept development and testing
+    Often involves a storyboard or prototype
+    Gives an idea of acceptable price and must-have features
+  Marketing strategy development
+    Determine marketing mix
+  Business analysis
+    Determines business viability
+  Product development
+    Note that this comes relatively late in the sequence
+  Market testing
+    Real-life testing is losing popularity due to media leakage
+      Alternative: simulation, e.g., in a fake supermarket, after watching ads
+    Peoria, Illinois, is a traditional US test market
+      Seen as a prototypical American city with representative demographics
+    New Zealand is a good test market for apps
+      English-speaking, small, isolated
+  Commercialization ("roll-out")
+
+US firms are rather good at NPD
+  It is well-studied in business schools
+Most firms have a portfolio approach
+  Mix of moonshots, likely successes, and regular product development
+
+Main advice regarding NPD
+  Recognize when you are in a NPD situation
+  Understand that there will be many ideas but few winners
+  Use a well-balanced porfolio of ideas to manage risk
+
+Lean Startup methodology
+  Associated with Eric Ries and Steve Blank
+  Embraced as the standard in Silicon Valley
+    The scientific approach to entrepreneurship has appeal
+  Goes against a lot of what traditional NPD stands for
+  Main tenets:
+    Entrepreneurship is not luck
+    Build a MVP
+      Smallest set of features that a reasonably tech-savvy user would want
+    Iterate quickly
+    Prototype rapidly and do a lot of A/B testing
+
+Product life cycle (PLC) conventional wisdom
+  Introduction
+    Keep the product line narrow
+    Either keep prices high (skim) or launch cheap (penetration)
+    Spend liberally on ads and attempt to get PR coverage
+    Example: solid-state drives
+  Growth
+    Add more channels (broader distribution)
+    Watch for "me too" new entrants
+    Compete on features and performance
+    Example: electric cars
+  Maturity
+    Focus on stealing customers, because nobody is new to the product anymore
+    Consider "freshening" brand with new claims and product modifications
+    Example: most consumer packaged goods (e.g., detergent)
+  Decline
+    Competing technology has been announced
+    Consider exiting the market (e.g., IBM with typewriters)
+    Simplify product line, limit distribution and advertising
+    Example: CRT computer displays
+
+A brand is a seller's promise to deliver a set of benefits consistently
+  It is a shorthand and a differentiator
+  If the promise is strong enough, the brand speaks for itself
+    Example: full-page Clinique ad that just depicts the product
+
+Good examples of branding:
+  Geek Squad, Best Buy's service and install business
+    Heavy investment in brand-building, e.g., cars and uniforms
+  Travelex
+    Bought up many regionalized airport money-changers
+    Launched a new blue and red corporate identity
+Examples of muddled branding:
+  Starbucks coffee
+    Starbucks-branded coffee is served in styrofoam cups on United flights
+  Cacao Reserve, a line of fancy chocolates by Hershey
+    Their packaging included "by Hershey's", but Hershey's isn't luxurious
+
+External features of the brand
+  Name
+    Must be short, pronounceable, and must not mean anything silly
+      Negative examples: Hyundai, I Can't Believe It's Not Butter!, Bimbo
+    Should be suggestive of the benefit offered
+      Negative example: Toyota Siena
+  Logo and color
+    Should be distinctive and consistent
+  Sound and smell
+  Brand essence statement
+    Defines what the brand means to customers
+    Example: "ingredients for life" (Safeway)
+
+Brand architecture
+  Managing the relationship between the firm's name and the product's name
+  Contrast "Courtyard by Marriott" with Ritz-Carlton (also owned by Marriott)
+
+Co-branding = strategically mixing brands in a single product
+  Very common because there are so many well-developed national brands
+  Examples: Dell/Intel laptops, Kellogg's/Smucker's Pop-tarts
+
+Multi-brand strategy = one company owns many brands that appear to compete
+  Can target all segments of the market
+  Example: Unilever owns Breyers, Good Humor, Klondike, Ben and Jerry's, ...
+
+White label brand = a product produced for rebranding by other companies
+  Used for store-brand products
+
+# Lecture 13
+
+Article on subscription services
+  Rolls-Royce rents out engines ("Power by the Hour") instead of selling them
+
+Three possible pricing objectives
+  Maximize contribution per unit sold
+  Maximize units sold (market share)
+  Signaling to competitors ("we will fight") and customers (positioning)
+
+Price signals quality under conditions of uncertainty
+  Because of TripAdvisor, hotels can't overcharge based on false claims
+
+Types of revenue streams
+  Transactions
+    Asset sale
+    Usage (e.g., cell phone minutes)
+    Renting (e.g., Hertz)
+  Subscription
+  Licensing
+  Brokerage/agency
+  Third party
+    Advertising
+
+Introduction-stage pricing strategy
+  Skimming
+    Charge highest possible price that some people will pay
+    Pluck off "price insensitive" customers first, then ride price curve down
+    Use when the market is segmentable
+    Examples: DSLR cameras (initially) and the Oculus Rift
+  Penetration
+    Ensure almost everyone in the market can pay for it
+    Use heavy mass media advertising to communicate value
+    Use when everyone wants the same thing
+  Don't employ a neutral strategy between skimming and penetration
+    Leaves money on the table from price-insensitive early adopters
+    Discourages immediate broad adoption
+
+Cost-based pricing = tie price to cost
+  Pros
+    Scientific (just the facts)
+    Ensures we don't sell at a loss
+  Cons
+    Ignores the competition
+    Unclear whether we should use full or marginal cost
+Going-rate pricing = tie price to competitors' prices
+  Pros
+    Requires little effort
+    Responsive to market forces
+  Cons
+    Doesn't account for differentiation
+Pricing by relative value = compute economic value, adjust for differentiation
+  Pros
+    Competitive
+  Cons
+    Takes effort to calculate
+    People won't pay all the economic value for something new
+    People may value the product less than expected
+
+In any market, some people want to pay more
+  It is the duty of the producer to allow them to pay more
+Corollary: in any market, some people can only afford to pay less
+
+Versioning = pricing by market segment
+  Have three versions:
+    Economy model
+      Okay for some people, but lacks a feature most people want
+    Classic model
+      What we hope most people by
+    Flagship model
+      We expect almost nobody to buy this
+      Main purpose: make the classic model look like good value
+  We can have more versions if the market is segmentable enough
+  We can have fewer versions if it is not feasible
+    A small hotel can't afford to construct multiple kinds of rooms
+  Pros
+    Extracts the most profit
+    Delights customers
+  Cons
+    Makes things more complicated
+
+Smart pricing = pricing by highly specific segments
+  Example: seating at the ballet, SF parking meters (price depends on demand)
+
+Pricing tactics
+  Discounts and coupons
+  Bundling
+    Do this when most people want a group of items together
+    Example: McDonald's combos
+  Unbundling
+    Do this when only some people want something
+    Example: extra fee for checking bags
+
+Reacting to competitors' pricing moves
+  Must determine if the change is permanent
+    If their price goes up, can we stay low to grab market share?
+    If their price goes down, should we just ride it out?
+      Do we risk a "race to the bottom" if we match?
+
+Legal issues in pricing
+  Retail price maintenance = forcing distributors to sell at a specific price
+    Illegal in the US (hence "suggested" retail prices)
+  Price discrimination = charging different people different prices
+    Illegal when based on certain attributes (gender, religion, race, ...)
+
+Objective in choosing a channel of distribution (place): minimize inventory
+  Inventory is expensive (obsolescence, spoilage, and financing)
+
+Why is one-day shipping so much harder than two-day shipping?
+  It's hard to predict how many people will need the service
+
+Functions of intermediaries (wholesalers and retailers)
+  Provide availability and geographic coverage
+  Reduce the number of transactions in the distribution system
+  Bulk-breaking (ensure products are economic to ship but convenient to buy)
+When the channel is long, there's usually a good reason
+  Example: moving clothes on motorbike to avoid traffic
+
+Logistics = managing physical distribution and related information
+  Choice of modality involves tradeoffs (e.g., cost vs. speed)
+    Worldwide, airfreight is 2% of weight moved but 40% of value
+
+From factories to distribution centers
+  Mostly outsourced to third-party logistics firms (3PLs)
+    3PLs can leverage economies of scale and scope
+  Containerization permits multi-modal shipping
+    Result: factory-to-store shipping costs are only about 1% of retail price
+From distribution centers to retail stores
+  Easy enough, but the goods the customer wants may be at another store
+From distribution centers directly to consumers (e.g., Amazon)
+  Last mile problem: the final movement of goods to their destination is hard
+    Problems: traffic, parking, doorstep theft, ...
+    Solutions: secure pickup lockers, in-store pickup
+  In China, last-mile distribution is done by small-scale delivery people
+    Would not work in the US because wages are higher
+
+# Lecture 14
+
+[Notes in Keep]
+
+# Lecture 15
+
+Strategy = big picture direction
+  Hope is not a strategy
+
+Strategic decisions
+  What markets to enter or abandon
+  What product lines to develop
+  What partnerships to enter
+  What companies to acquire or divest
+  How to position the brand
+  How to win in competition with rivals
+
+Strategic business unit (SBU)
+  Run each line of a business as a small company
+  Each SBU has its own accounting and management
+  SBUs can be individually acquired or divested
+Opposite of SBUs: chaebols (large, family-owned conglomerates in South Korea)
+  Centralized decision-making
+
+Strategy analysis techniques
+  SWOT analysis
+    Identify strengths, weaknesses, opportunities, threats
+      Other things to consider: culture, wishes of owners, industry structure
+    Critique: gathers all the facts, but is simplistic
+  Porter analysis
+    Factors affecting industry competitiveness (lower is better for each):
+      Threat of new entrants
+      Threat of substitutes
+      Industry rivalry
+      Power of buyers
+      Power of suppliers
+    Critique: good for analyzing industries, but not individual firms
+  BCG growth-share matrix
+    Scatter plot of business units
+      Axes: market growth rate and relative market share
+      Quadrants:
+        Stars (invest heavily)
+        Cash cows (nurture)
+        Question marks (analyze carefully)
+        Dogs (divest or sell)
+    Critique: comprehensive and popular, but only useful if you have many SBUs
+  GE planning grid
+    Another kind of scatter plot
+      Axes: market attractiveness and competitive strength
+    Critique: multi-dimensional but subjective
+
+Modern strategic themes
+  Consider organizing your business in a novel way
+    Redbox and Netflix have very different business models (both successful)
+  Embrace open systems
+    Amazon lists other retailers' offers next to its own
+    App stores
+  Tolerate creative destruction (be prepared to move on to the next model)
+
+Coopetition = cooperation between competitors
+  Netflix is streamed via AWS
+    This allowed Netflix to grow rapidly without investing in infrastructure
+  USPS is the last mile for many FedEx packages
+
+Competition is good for individual firms
+  Spurs product innovation
+    H&M and Zara forced the fashion industry to speed up
+  Encourages cost reduction
+    Dell brought computer prices down industry-wide
+  Protects against anti-trust
+Firms choose where to compete
+  Baidu doesn't do English-language search
+
+Risk identification
+  Trends that go against us
+    Example: people no longer like to go out to movies
+  Strategic events
+    Example: if Didi entered the US market
+  Unknown unknowns
+    Example: SARS shutting down the Hong Kong airport in 2003
+Risk assessment
+  Time horizon
+  Impact and severity
+  Probability
+    Use hard data, not gut feeling, to prevent optimism bias
+Risk management
+  Risk avoidance
+  Risk transfer (buy insurance, hedge commodity prices, ...)
+  Impact mitigation
+  Contingency planning (contingent supply chain, flexible staff, ...)
+Limitations of risk management
+  No insurance company will insure against "ordinary business risk"
