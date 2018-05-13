@@ -77,4 +77,3 @@ Total cache capacity
   Equal to (associativity) * (number of sets) * (block size)
     Associativity = blocks per set (AKA "number of ways")
     Block size = bytes per block
-

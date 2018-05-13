@@ -29,9 +29,8 @@ C pre-processor (CPP)
   Processes C code before compilation
   Removes comments
   Runs pre-processor commands
-    #include for imports 
+    #include for imports
     #define for macro definition
 
 Integers in C
   Size depends on computer (16, 32, or 64)
-  

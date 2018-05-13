@@ -19,7 +19,7 @@ Amdahl's Law
     where F is fraction of program that can be parallelized
       and S is speedup multiplier
   Example: enhancement runs 20x faster but only usable 25% of the time
-    Max speedup = 1 / ((1 - 0.25) + (.25 / 20)) = 1.31 
+    Max speedup = 1 / ((1 - 0.25) + (.25 / 20)) = 1.31
 
 Types of scaling (on parallel processor)
   Strong = speedup achieved w/o increasing problem size
@@ -33,8 +33,3 @@ SIMD
 Loop unrolling
   Doing k sequential iterations of a loop in each step
   Takes advantage of SIMD architecture
-
-
-
-  
-

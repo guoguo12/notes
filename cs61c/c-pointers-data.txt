@@ -42,7 +42,7 @@ Array equivalent to pointer to first element:
   pt = &myArray[0]; // Same thing
 
 Concise array summation:
-  
+
   int sum = 0;
   int p = &ar[0];
   int q = &ar[LENGTH];
@@ -74,10 +74,10 @@ Address space of program
   Heap holds dynamic data requested using malloc()
     Grows upward (away from zero)
   Static storage holds variables outside of functions
-  Code segment holds executable statements 
+  Code segment holds executable statements
 
 malloc() allocates heap space and returns a void pointer to block:
-  
+
   typedef struct { ... } TreeNode;
   TreeNode *tp = (TreeNode *) malloc(sizeof(TreeNode));
 
@@ -91,7 +91,7 @@ free() deallocates memory:
   ...
   free((void *) ip);
 
-free() must receive the exact pointer returned by malloc 
+free() must receive the exact pointer returned by malloc
 
 Must check that malloc() doesn't return NULL (indicates memory is full):
 
@@ -99,4 +99,3 @@ Must check that malloc() doesn't return NULL (indicates memory is full):
     printf("Memory is full");
     exit(1);
   }
-

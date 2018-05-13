@@ -20,7 +20,7 @@ Registers
 
 MIPS has 32 registers
   Each 32 bits (1 word) wide
-  Named $0, $1, etc. or by special names 
+  Named $0, $1, etc. or by special names
     $s0-$s7 for C variables
     $t0-$t7 for temp variables
 
@@ -79,7 +79,7 @@ Condition checking
 MIPS instructions
   32 bits long each
   Converted into bit patterns to be held in memory
-  
+
 Executing programs
   Program counter (PC) holds byte address of next instruction
   Instruction loaded into processor then executed
@@ -90,7 +90,7 @@ Calling a function
   $ra holds the return argument
     Holds address of instruction to return to
     Use jr $ra to jump to return address
-  Use jal to invoke function 
+  Use jal to invoke function
     Stores address of following instruction to $ra
   Old values before function call stored on stack
     $sp is stack pointer
@@ -173,7 +173,7 @@ Compiling a C program (foo.c)
       .word denotes 32-bit quantities of static data
     Replaces pseudo-instructions with real instructions
   Linker makes executable, a.out
-    Resolves references using symbol tables and library files 
+    Resolves references using symbol tables and library files
 Loader can then read a.out into memory to execute
 
 Symbol table
@@ -182,4 +182,3 @@ Relocation table
   List of items in given files whose addresses are needed
     Label locations (used by j and jal)
     Static data (used by la)
-    

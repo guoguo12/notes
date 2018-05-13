@@ -13,10 +13,10 @@ Clock signal (CLK)
 Synchronous digital systems (SDSs)
   Signal changes follow clock changes
 
-Circuits in SDSs 
+Circuits in SDSs
   CL (combinatorial logic) circuits
     No history (e.g. ALUs)
-  SL (sequential logic) circuits 
+  SL (sequential logic) circuits
     Remember data (e.g. registers)
     AKA state elements
 
@@ -37,4 +37,3 @@ Pipelining to improve performance
   Insert register after CL block to overlap instructions
   More outputs per second (bandwidth)
   Each individual result takes longer (greater latency)
-
