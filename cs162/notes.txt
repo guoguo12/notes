@@ -1,0 +1,617 @@
+# Intro
+
+OS sits between software and hardware
+  Provides abstractions: threading, sockets, virtual memory, ...
+  Provides safety
+
+Technology trends
+  Joy's law (re. computing speed)
+  Moore's law (re. number of transistors per integrated circuit)
+    Has been slowing down since 2000
+  Increase in number of cores per person: cell phones, IoT, ...
+  Increase in software complexity (e.g., as measured by LoC)
+  Increase in internet scale (connected devices, users, ...)
+
+Virtual machine abstraction
+  Process VM: supports single-program execution
+    Gives programs the illusion that they own the machine
+      Process thinks it owns all devices, has all memory/CPU
+    Provides fault isolation: one process failing can't impact another
+    Typically provided by OS
+  System VM: virtualizes entire OS
+    Good for OS development
+    Example: VirtualBox
+
+# Processes
+
+Thread = single unique execution context
+  A thread is executing on a processor when it is in the processor registers
+  Certain registers hold the thread context (as described by the ISA)
+    E.g., PC (Program Counter), stack/frame/heap pointers
+  Fully describes program state
+
+Address state = set of accessible addresses, plus associated state
+  Consists of: stack (grows down), heap (grows up), static data, code
+
+Multiprogramming = running multiple threads at once
+  Provide illusion of multiple processors by multiplexing in time
+  Each virtual CPU stores PC, SP, registers, ...
+    Switch between virtual CPUs by switching this information
+  Switches triggered by time, voluntary yield, I/O, ...
+
+Protection
+  OS must protect itself from user programs and user programs from each other
+    For reliability, security, fairness, privacy, ...
+Proection mechanisms
+  Limited translation between virtual and physical address spaces
+  Privileged instructions and special registers
+  Syscall processing and subsystem implementation
+    E.g., file access rights
+
+Process = execution environment with restricted rights
+  Encapsulates 1+ threads sharing process resources
+  Owns address space, file descriptors, filesystem context, ...
+  Has unique process ID (PID)
+  Fundamental tradeoff between protection and efficiency
+    Communication easy within a process but harder between processes
+Application instance consists of 1+ processes
+
+Dual mode operation
+  Kernel mode is special: full access to CPU, memory, and peripherals
+  User mode is normal
+The currently active mode is stored in a CPU flag
+Types of mode transfer
+  Syscall (e.g., `exit`)
+  Interrupt (external async event, e.g., timer or I/O device)
+  Trap/exception (e.g., segfault)
+
+Example: branch and bound
+  Address space translation
+    Check program address is less than bound, then add to base address
+  User-to-kernel mode transfer
+    Store PC somewhere (uPC), set PC to interrupt handler address, set mode bit
+      Address and properties of each interrupt handler held in interrupt vector
+  Switching user processes (in kernel mode)
+    Save previous process's uPC, base, bound, and registers to PCB (see below)
+    Load in data for new process, copy uPC into PC, set mode bit, resume
+
+Process Control Block (PCB) = kernel representation of process
+  Status (running, ready, blocked, ...)
+  PC, registers, SP, ... (when not running)
+  PID, user, executable, priority, ...
+  Execution time, ...
+  Memory space, translation tables, ...
+PCB lives in kernel space
+
+Simultaneous multithreading (AKA Hyper-threading)
+  One processor can execute multiple independent instructions simultaneously
+  OS sees two virtual cores for a single physical core
+
+Implementing kernel mode transfers safely
+  Kernel stack = separate stack for kernel mode instructions
+  Controlled transfer into kernel (e.g., syscall table)
+
+Example: syscall lifecycle (note the steps taken to protect the kernel)
+  Use syscall number to look up handler in syscall table
+  Locate arguments in registers or user stack
+  Copy arguments from user memory into kernel memory
+  Validate arguments
+  Copy results back into user memory
+
+Interrupt control
+  Interrupt processing is invisible to user program
+  Interrupt handlers are non-blocking
+  CPU can disable (mask off) certain interrupts, e.g., based on priority
+    Non-maskable interrupts (NMIs) can't be disabled
+  Interrupts are disabled during certain atomic operations
+    E.g., changes to PC/SP, changes between kernel and user mode, ...
+
+# Process Management
+
+`fork` syscall creates a copy of the current process with a new PID
+  All program state (stack, heap, file descriptors, ...) is duplicated
+  Return value
+    GT 0: we're in the parent and the return value is the child PID
+    EQ 0: means we're in the child
+    LT 0: means we're in the original process and an error occured
+
+Process management commands
+  `getpid`: get PID of the calling process
+  `exec`: change the program being run by the current process
+  `wait`: wait for a process to finish
+  `signal`: send a notification to another process
+
+Shell
+  Job control system
+  Allows programmer to create/manage programs
+
+Signals
+  Used for interprocess communication
+  Program can specify handlers for signals (e.g., a SIGINT handler)
+
+# I/O
+
+Key Unix I/O design concepts
+  Uniformity
+    Can use `open` to communicate with files, network sockets, processes, ...
+    Allows simple composition of programs (using pipes)
+  Open before use
+    Provides opportunity for access control and setup
+  Byte-oriented
+    Even if blocks are transferred
+  Kernel buffered reads
+    Streaming and block devices looks the same
+    `read` blocks the process, yielding processor to another task
+  Kernel buffered writes
+    Completion of write decoupled from the application, allowing it to continue
+  Explicit close
+
+Filesystem abstraction
+  Files live in hierarchical namespace of filenames
+  File
+    Named collection of data:
+      File data
+      File metadata (size, modification time, owner, access rights, ...)
+  Directory
+    Holds files and directories
+
+C high level I/O API (stream-based)
+  Data is buffered automatically by C library functions
+  Standard streams (stdin, stdout, stderr)
+    Enable composition of programs, e.g., via pipes
+  Stream operations: `fread`, `fwrite`, `fprintf`, ...
+  Stream positioning: `fseek`, `rewind`, ...
+
+C low level I/O API (file-descriptor-based)
+  `open`, `close`, `read`, `write`, ...
+    When `write` returns, `read` is guaranteed to reflect new change
+      But `write` does not guarantee the write actually persisted to disk
+  `dup` copies a file descriptor to the lowest available file descriptor
+  `dup2` copies a file descriptor to the specified file descriptor
+    If the specified new file descriptor is open, it will be closed first
+  And much more: `mmap`, asynchronous I/O, ...
+
+File descriptor representation
+  In the low level I/O API, file descriptors are ints
+    Each process has a file descriptor table in their PCB
+  In the filesystem, file descriptors are structs with file details
+    Where it resides, its status, how to access it
+
+Device driver
+  Device-specific kernel code that interacts directly with the device hardware
+  Top half (kernel's interface to the device)
+    Implements standard cross-device calls (`open`, `read`, `ioctl`, ...)
+  Bottom half (run as interrupt handler)
+    Gets input or transfers output blocks
+    Wakes sleeping threads when I/O finishes
+
+File abstraction works for interprocess communication (local or networked)
+
+# Networking
+
+Socket = abstraction of network I/O queue
+  Makes network data transfer like reading/writing to a file
+  Works over any kind of network
+
+Example: echo server
+  Client writes to its socket file descriptor to send request
+  Server reads from its socket to get request
+  Server writes to its socket to send data
+  Client (waiting) reads from its socket, then prints to stdout
+
+Using sockets in C/C++ over TCP/IP
+  Server
+    Creates a server socket and binds it to a host/post and protocol (TCP)
+    Calls `listen` to detect incoming connection requests
+    Creates a new connection socket for each accepted request
+      Can pass this off to a handler by forking
+  Client
+    Creates a client socket and binds it to a host/post and protocol (TCP)
+    Calls `connect` to create connection
+
+# Concurrency
+
+Multiplexing processes
+  Store current state of each process in a PCB
+  Give out CPU time to different processes (scheduling)
+  Give pieces of resources to different processes (protection)
+
+Process lifecycle
+  PCBs move from queue to queue as they change state
+
+Multithreaded processes
+  State shared among threads
+    Memory (heap, global variables, ...)
+    I/O state (file descriptors, network connections, ...)
+  State private to each thread, kept in Thread Control Block (TCB)
+    Execution state: CPU registers, PC, SP
+    Scheduling info: priority, CPU time,
+    Pointers for implementing scheduling queues
+    Pointer to enclosing process (PCB)
+
+OS dispatch loop
+  Run thread
+  Choose next thread to run
+  Save CPU state for previous TCB
+  Load CPU state for next TCB
+
+When do threads return control to the dispatcher?
+  Internal events
+    Blocking on I/O
+    Waiting on a signal
+    Call to `yield` (to voluntarily give up CPU)
+  External events (preemption)
+    Interrupts, e.g., timer interrupt
+
+Creating a new thread (`ThreadFork`)
+  Arguments
+    Pointer to application routine
+    Pointer to array of arguments
+    Size of stack to allocate
+  Implementation
+    Sanity-check arguments
+    Enter kernel mode and sanity-check arguments again
+    Allocate new stack and TCB
+      SP points to stack
+      PC return address points to `ThreadRoot`
+      Argument registers `a0` and `a1` set to `fcnPtr` and `fcnArgPtr`
+    Initialize TCB and place on ready queue
+
+Root for thread routine (`ThreadRoot`)
+  Does startup housekeeping (recording start time and other stats)
+  Enters user mode
+  Calls `fcnPtr` with `fcnArgPtr`
+  Final return from thread calls `ThreadFinish`
+
+User-mode threads
+  Alternative to threading directly supported by the kernel
+  User program provides scheduling (possibly non-preemptive)
+  Cheaper because scheduling doesn't require switching into kernel mode
+  Downside: when one thread blocks on I/O, all threads block
+
+# Deadlock
+
+Deadlock requirements
+  Mutual exclusion (resource cannot be shared among threads at the same time)
+  Hold and wait (a thread waits when acquiring a resource held by other threads)
+  No preemption (resources are only released voluntarily)
+  Circular wait
+
+Resource allocation graph
+  Threads are circles
+  Resources are rectangles containing dots (one per instance)
+  Thread-to-resource edges are requests
+  Resource-instance-to-thread edges are assignments
+  A cycle involving threads and resources isn't necessarily a deadlock
+    It depends on the resource instances
+
+How resolve a deadlock?
+  Terminate thread
+    May lead to inconsistent state
+  Take away resources
+    Doesn't always fit with semantics
+  Roll back actions of deadlocked threads
+    Common in databases
+    May lead to deadlock again (e.g., if same actions happen)
+
+How to prevent deadlock?
+  Infinite resources (or illusion thereof)
+  Sharing of resources not allowed
+    Not realistic
+  Don't allow waiting (a request for a busy resource is immediately denied)
+    Leads to busy waiting
+  Make threads request all resources they'll need at the beginning
+    Leads to overestimation of need
+  Force all threads to request resources in a particular order
+
+Banker's algorithm for preventing deadlock
+  Allocate resources dynamically
+    Grant a request if some ordering of threads finishing leads to no deadlocks
+  Avoids deadlocks and is less restrictive than deadlock detection algorithm
+
+# Devices
+
+Types of standard interfaces
+  Block devices (disk drives, tape drives, ...)
+    Access blocks of data
+    `open`, `read`, `write`, `seek`, ...
+  Character devices (keyboards, mice, serial ports, ...)
+    Access single characters at a time
+    `get`, `put`, ...
+  Network devices (Ethernet, Bluetooth, ...)
+    Socket interface
+
+Device controller
+  Contains registers and memory
+  Connected to CPU and main memory by busses (ISA, PCI, PCI Express, ...)
+
+CPU interaction with controller
+  I/O instructions (in/out)
+  Memory-mapped I/O
+    Hardware maps device registers and memory into physical address space
+    Example: display controller
+      Writing to display memory changes images on screen
+      Writing to command register causes graphics hardware to do something
+    Not to be confused with memory-mapped file I/O, or `mmap`
+
+Controller notifying CPU (of events and errors)
+  I/O interrupt
+    Relatively high overhead
+  Polling
+    Wastes cycles if events are unpredictable
+
+Data transfer to/from controller
+  Programmed I/O
+    Each byte transferred via processor (via in/out or load/store instructions)
+    Expensive (consumes processor cycles proportional to data size)
+  Direct memory access (DMA)
+    Controller can directly access memory bus
+    Transfer is initiated by CPU but done asynchronously (interrupt on finish)
+
+Hard disk drive (HDD)
+  Slow random access, fast sequential access
+  Latency = sum of times for queueing, controller, seek, rotation, and transfer
+    Seek = move head over specified track
+    Rotation = wait for desired sector to rotate under head
+  Controller is highly intelligent
+    Error correction, sector sparing (remapping bad sectors to spare ones), ...
+
+Solid-state drive (SSD)
+  No seek or rotational delay (thus low latency, high throughput)
+  No moving parts (thus energy efficient, slient, and shock insensitive)
+  But HDDs are cheaper, last longer, and have more symmetric performance
+    SSD writes take roughly 10x longer than reads
+
+Disk scheduling
+  FIFO
+    Fair but can lead to very long seeks
+  SSTF (shortest seek time first)
+    Actually must also take into account rotation time
+    May lead to starvation
+  SCAN (elevator algorithm) = take closest request in direction of travel
+    Biased toward locations in the middle
+  C-SCAN = like SCAN, but always travels in the same direction
+    More fair than SCAN, at cost of return seek time
+
+# Queueing Theory
+
+Little's law
+  Avg. number of jobs in system = (avg. arrival rate) * (avg. response time)
+  Assumes stable system: avg. arrival rate = avg. departure rate
+
+M/M/1 queue model
+  Arrivals are determined by a Poisson process
+  Service times are exponentially distributed
+  There is a single server
+M/G/1 queue model
+  Like M/M/1, but service times are characterized by an arbitrary distribution
+
+# Filesystems
+
+Filesystem responsibilities
+  Naming: find files by name, not by blocks
+  Disk management: collecting disk blocks into files
+  Protection: user permissioning
+  Reliability/durability: keeping files durable despite crashes, attacks, ...
+
+Fragmentation
+  Internal: wasted space within each allocated block
+    Due to rounding requested allocation up to allocation granularity
+  External: wasted space outside of allocated blocks
+
+FAT (file allocation table)
+  Most commonly used filesystem in the world
+  FAT = table that corresponds one-to-one with disk blocks
+    Each FAT entry stores the index of the next entry (or EOF indicator)
+    File number = index of first (root) block for file
+  Good performance for sequential reads from file
+  Bad performance for random reads from file (requires linked list traversal)
+  Having lots of small files leads to internal fragmentation
+    Each file takes up at least one block
+
+Unix filesystem
+  Array of inodes (file metadata objects)
+    File number = index of inode
+  Each inode contains file metadata and data pointers
+    Direct pointers point directly to data blocks
+    Indirect pointers point to blocks that contain direct pointers
+    Doubly indirect pointers point to blocks that contain indirect pointers
+  Directory and its files are placed in same block group (close set of tracks)
+    Provides locality (improved seek times)
+
+NTFS (New Technology File System)
+  Default on Windows systems
+  Uses variable-length extents rather than fixed-size blocks
+
+Directories
+  Implemented as files mapping filenames to file numbers
+Links
+  Hard link = adds file number to mapping for another directory
+  Soft link (symlink) = adds path of file to another directory
+    Maps one name to another name
+
+Memory-mapped file I/O (`mmap` syscall)
+  Maps a file into the address space, with implicit paging in/out on read/write
+  Files executed using `exec` are treated like this
+
+# Reliability and Transactions
+
+Availability = probability that the system can accept/process requests
+  Measured in "nines"
+Durability = fault tolerance of data
+Reliability = system is not only "up", but can perform correctly
+  Includes availability, durability, security, ...
+
+Redundant Arrays of Inexpensive Disks (RAID)
+  Provides durability through redundancy
+  RAID 1 = disk mirroring
+    Data is fully duplicated between two disks
+    Writes are expensive, but reads can be optimized
+  RAID 5 = striping and distributed parity
+    Striping: successive blocks stored on different disks
+    Parity: parity blocks constructed by xor-ing data blocks in stripe
+      Parity blocks are distributed evenly among disks
+      Can destroy any one disk and still reconstruct data
+  RAID protects against media failures but not bad state (inconsistencies)
+
+Storage reliability problem
+  Single logical file operation can involve updates to multiple physical blocks
+  At physical level, operations complete one at a time
+  How to guarantee consistency in event of crash, power failure, or corruption?
+    Careful ordering
+      Sequence operations so that the sequence can be interrupted safely
+      After crash, read data structures and clean up any interrupted operations
+      Used by FAT
+    Copy on write
+      Never update in place (treat files as persistent trees)
+      Used by ZFS (Solaris's filesystem)
+
+Transactions
+  Transaction = atomic sequence of actions (reads/writes)
+    Takes the system from one consistent state to another
+    Starts with BEGIN, ends with COMMIT
+    Roll back if transaction fails in the middle
+  General reliability solution used by most modern filesystems
+  Satisfies ACID (atomicity, consistency, isolation, durability)
+
+Logging filesystem
+  All updates to disk are done in transactions
+  Changes are written to a log (append-only) before being persisted to disk
+    Check log on recovery
+      For uncommitted (but started) transactions, discard entries
+      For committed, unpersisted transactions, redo entries
+  Good performance for random writes (just append to log)
+
+# Networking
+
+Identity/names
+  TCP/UDP port (16 bits)
+    Assigned by OS
+  IP address (32/64 bits)
+    Assigned by OS
+  MAC address (48 bits)
+    Assigned by NIC manufacturer
+
+TCP/IP model
+  Physical layer = bits over medium
+    Protocol decides encoding, error-detection, cable size, layout of pins, ...
+  Data link layer = exchange messages over link (point-to-point or broadcast)
+    Network switch = device connecting computers in a local area network (LAN)
+    Examples: Ethernet, Wi-Fi
+  Network layer = connects networks together
+    Router = device connecting LANs, forming the internet
+      Uses a forwarding table to decide where to send packets
+    Provides best-effort packet delivery
+      Does not guarantee against corruption, loss, reordering, ...
+    Primary example (the "narrow waist"): IP
+  Transport layer = end-to-end communication between processes
+    Examples: TCP (reliable, in-order streams), UDP (best-effort datagrams)
+  Application layer = direct interaction with software applications
+    Examples: HTTP, FTP, SSH, DNS, IMAP, SMTP
+
+End-to-end principle = implement functionality in highest layer possible
+  Enables networks to be as flexible as possible
+  Implement encryption in application layer, not in kernel
+  Implement reliability and ordering in transport layer, not network layer
+    Exception: most wireless protocols today support hop-by-hop reliability
+
+# Distributed Decision-Making
+
+Distributed system = physically separate computers working together
+  Coordination is more difficult
+  But system may have better availability, durability, ...
+
+Two Generals Problem
+  Two parties communicating over an unreliable channel
+  Not possible to achieve consensus because acks can be lost
+    Both parties may be left wondering if their last message got through
+
+Two-phrase commit (2PC)
+  Solves the distributed atomic transaction problem
+    2+ nodes agree to do something, or not, atomically
+    Assumes no node crashes forever and all communications eventually succeed
+  Each machine has a persistent, stable log (used to recover state on failure)
+  Prepare phase
+    Coordinator sends vote request to workers and waits for all replies
+    Workers execute transaction up until commit (while writing to logs)
+    Each worker replies with "yes" vote if all of its actions succeeded
+      If it is unable to commit, it replies with "no" vote
+  Commit phase
+    If coordinator receives "yes" from each worker
+      Coordinator writes "COMMIT" in its log
+      Coordinator tells all workers to commit (global decision)
+      Each worker commits and sends ack to coordinator
+      When all acks are received, coordinator ends transaction
+    If coordinator receives a "no" (or times out waiting for failed worker)
+      Coordinator writes "ABORT" in its log
+      Coordinator tells all workers to abort (global decision)
+  If coordinator fails before prepare phase, workers time out and abort
+  If coordinator fails between phases, workers ask each other for their states
+    If another worker has aborted: safe to abort (global decision made)
+    If another worker has committed: safe to commit (global decision made)
+    If another worker has not yet received a vote request: both can abort
+    But if all workers are waiting for global decision, all must block
+      Blocked workers must hold resources (like locks) until unblocked
+      Other schemes (like PAXOS or three-phase commit) solve this problem
+
+Byzantine Generals Problem
+  One general, N-1 lieutenants
+    F of these are malicious/insane
+  General must send order to lieutenants
+    All loyal lieutenants must obey the same order
+    If the general is loyal, all loyal lieutenants must obey his order
+  Impossibility result: must have N > 3F to solve the problem
+
+Remote procedure call (RPC) = call a procedure on a remote machine
+  Marshalling
+    Serialize objects
+    Copy arguments passed by reference
+    Convert values to canonical form
+      Required if client and server use different languages/architectures
+  Client stub marshalls arguments and unmarshalls return values
+  Server stub unmarshalls arguments and marshalls return values
+
+# Key-Value Stores
+
+Key-value store = distributed hash table
+  Challenges: fault tolerance, scalability, consistency, heterogeneity
+
+Directory-based architecture
+  Master node stores mapping from keys to the nodes containing their values
+  Iterative query = client must request value from non-master node
+  Recursive query = master directly requests value from non-master node
+    Easier to maintain consistency (master can serialize puts/gets)
+    But hard to scale for large values
+  For fault tolerance
+    Replicate values on several nodes
+  For scalability
+    For more storage: use more nodes
+    For more read requests: serve requests from replicas in parallel
+    For master scalability: replicate it
+      Or partition it so different masters serve different keys
+  For consistency
+    Ensure values have been replicated correctly by waiting for acks (slow)
+    Concurrent updates on same key must happen in same order for each replica
+
+Consistency models
+  Atomic consistency (linearizability)
+    Reads/writes appear as if there were a single system image
+  Eventual consistency
+    Given enough time, all updates will propagate through system
+
+Quorum consensus
+  Alternative to using a directory
+  N replicas
+    Put waits for ack from W+ replicas
+    Get waits for ack from R+ replicas
+  Works as long as W + R > N
+    At least one node read from will contain latest copy
+
+Consistent hashing
+  Associate each node with a unique ID in the space of key hashes
+    Store each item in the node with smallest ID larger than the key's hash
+    For replication, repeat this procedure with multiple hash functions
+      This also evens out irregularities in the distribution of key hashes
+  Directory size now linear in number of nodes, not number of key-value pairs
+  Fast resizing
+    Adding a node requires remapping far fewer items than in a naive hash table
