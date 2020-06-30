@@ -1,0 +1,64 @@
+COURSE NOTES
+CS 61AS - FALL 2014
+ALLEN GUO
+
+LESSON 1
+
+- Functions must return the same result every time
+  - Procedures do not
+- All functions are procedures
+- Evaluation is recursive
+  - Can be represented in tree form
+- Special forms = only exceptions to rules of evaluation
+- Substitution model = evaluate by replacing vars. with their definitions
+  - Not how interpreter actually works
+  - Applicative order = evaluate args. before applying
+  - Normal order = evaluate args. when needed
+- Predicates return boolean values
+- Definitions can exist inside definitions
+  - Inner definitions have access to args in the outer definition
+
+LESSON 2
+
+- Abstraction is useful
+- Procedures are first-class in Scheme
+
+LESSON 3
+
+- Iteration in Scheme is accomplished via tail recursion
+  - O(1) space comp. (no new stack frames)
+- Linear recursion = procedure invokes itself once (e.g. factorial)
+- Tree recursion = procedure invokes itself twice (e.g. fib)
+  - O(n) space comp. (at any point, we need to track only the nodes above us
+                      in the recursion tree)
+- Invariant = condition in procedure relied upon to be always true
+
+LESSON 4
+
+- Constructor = create compound data objects
+- Selector = extract data from objects
+- Data abstraction violation = using the underlying implementation of an object
+                               as opp. to using constructors/selectors
+- Advantage of abstraction barriers = changes in underlying levels need not
+                                      propogate upward
+- Sentences can contain only words, but lists can contain other lists
+
+LESSON 5
+
+- List structures can be repr. w/ box-and-pointer diagrams or little-t trees
+- BFS traverses trees level by level
+- DFS traverses trees branch by branch
+
+LESSON 6
+
+- Data-directed programming (DDP) = treating system details for types as data
+                                    (e.g. by using a table that maps types and
+                                    operation names to operations)
+- Modern DDP is implemented as polymorphism
+- Message passing = data objects are procedures that take messages (operations)
+                    as arguments 
+
+LESSON 7
+
+- Modern OOP can be implemented in Scheme
+- Modularity principle: programs should be composed of encapsulated objects
